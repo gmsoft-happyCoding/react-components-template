@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}-components",
+  "name": "projectname-components",
   "private": true,
   "scripts": {
     "start": "cross-env PORT=3030 node --max_old_space_size=6144 scripts/start.js",
@@ -103,6 +103,7 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.0.6",
     "postcss-safe-parser": "4.0.1",
+    "progress-bar-webpack-plugin": "^1.12.1",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
     "scp2": "^0.5.0",
