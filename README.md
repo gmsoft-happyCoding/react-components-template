@@ -20,7 +20,7 @@ docz 是什么? 详见: https://www.docz.site/documentation
 
 ### `yarn run bad`
 
-编译&发布(build and deploy) app 项目
+编译&发布(build and deploy)项目
 发布信息可以通过以下环境变量(在此目录 app/env 对应的配置文件中)配置:
 
 ```
