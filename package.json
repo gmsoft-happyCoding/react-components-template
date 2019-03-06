@@ -1,5 +1,4 @@
 {
-  "name": "{{projectName}}-components",
   "private": true,
   "scripts": {
     "start": "cross-env PORT=3030 node --max_old_space_size=6144 scripts/start.js",
