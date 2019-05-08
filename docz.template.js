@@ -37,6 +37,9 @@ const scripts = [
 ];
 
 const html = `
+<!--
+此文件是脚本生成的, 请不要编辑或签入 svn 或 git
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
