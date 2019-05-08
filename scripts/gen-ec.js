@@ -22,12 +22,13 @@ module.exports = ${JSON.stringify(pick(exportComponents, pickComponents), null, 
 function genEC() {
   return new Promise(resolve => {
     const args = require('gar')(process.argv.slice(2));
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     if (args['pick'] || args['p']) {
       const questions = [
         {
           type: 'checkbox',
           name: 'pickComponents',
-          message: `请选择你想要${(process.env.NODE_ENV = 'development' ? '调试' : '发布')}的组件?`,
+          message: `请选择你想要${process.env.NODE_ENV === 'development' ? '调试' : '发布'}的组件?`,
           choices: Object.keys(exportComponents),
           pageSize: 10,
           validate: pickComponents => {

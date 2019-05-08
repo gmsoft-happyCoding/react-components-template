@@ -45,6 +45,8 @@ function buildAndDeploy(whichDeploy, exportComponents) {
 }
 
 async function run() {
+  process.env.NODE_ENV = 'production';
+
   const exportComponents = await genEC();
   const whichDeploy = await loadDeployEnv();
   buildAndDeploy(whichDeploy, exportComponents);

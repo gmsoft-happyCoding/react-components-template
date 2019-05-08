@@ -14,6 +14,8 @@ function devBuild(exportComponents) {
 }
 
 async function run() {
+  process.env.NODE_ENV = 'development';
+
   const exportComponents = await genEC();
   devBuild(exportComponents);
 }
