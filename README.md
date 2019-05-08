@@ -9,7 +9,9 @@
 启动 components 项目开发调试, 默认端口 3030
 (需调试的组件请在 src/App.tsx 中 import)
 
-### `yarn dev-build`
+### `yarn dev-build [-p | --pick]`
+
+* `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
 
 启动 components 项目的开发构建, 构建出独立的组件 bundle, 用于在其他项目中集成调试
 
@@ -23,7 +25,13 @@
 
 docz 是什么? 详见: https://www.docz.site/documentation
 
-### `yarn run bad`
+### `yarn run bad [env] [-p | --pick] [--no-doc]`
+
+* `env` - (可选参数) 指定发布环境
+
+* `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
+
+* `--no-doc` - (可选参数) 不生成docz文档
 
 编译&发布(build and deploy)项目
 发布信息可以通过以下环境变量(在此目录 app/env 对应的配置文件中)配置:

@@ -8,29 +8,46 @@ const child_process = require('child_process');
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const loadDeployEnv = require('./utils/load-deploy-env');
+const genEC = require('./gen-ec');
 
 function printSegment(title) {
   console.log(chalk.magenta(`---------------------------${title}---------------------------`));
 }
 
-function buildAndDeploy(whichDeploy) {
+function buildAndDeploy(whichDeploy, exportComponents) {
   // project build
   printSegment('project build');
-  child_process.execSync('yarn build', { stdio: 'inherit' });
+  child_process.execSync('yarn build', {
+    stdio: 'inherit',
+    env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
+  });
+
   // docz build
-  printSegment('docz build');
-  child_process.execSync('docz build', { stdio: 'inherit' });
+  const args = require('gar')(process.argv.slice(2));
+  if (!args['no-doc']) {
+    printSegment('docz build');
+    child_process.execSync('docz build', {
+      stdio: 'inherit',
+      env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
+    });
+  }
+
   // gen:meta
   printSegment('gen meta');
-  child_process.execSync('yarn gen:meta', { stdio: 'inherit' });
+  child_process.execSync('yarn gen:meta', {
+    stdio: 'inherit',
+    env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
+  });
+
   // deploy
   printSegment('deploy');
   child_process.execSync(`yarn deploy ${whichDeploy}`, { stdio: 'inherit' });
 }
 
 async function run() {
+  const exportComponents = await genEC();
   const whichDeploy = await loadDeployEnv();
-  buildAndDeploy(whichDeploy);
+  buildAndDeploy(whichDeploy, exportComponents);
 }
 
 run();

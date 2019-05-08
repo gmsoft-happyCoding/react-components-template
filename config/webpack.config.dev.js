@@ -18,7 +18,9 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const externals = require('./externals');
-const exportComponents = require('./exportComponents');
+const exportComponents = process.env.PICK_EXPORT_COMPONENTS
+  ? JSON.parse(process.env.PICK_EXPORT_COMPONENTS)
+  : require('./exportComponents');
 
 const webpackHotDevClient = require.resolve('react-dev-utils/webpackHotDevClient');
 

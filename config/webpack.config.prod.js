@@ -23,7 +23,9 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const externals = require('./externals');
-const exportComponents = require('./exportComponents');
+const exportComponents = process.env.PICK_EXPORT_COMPONENTS
+  ? JSON.parse(process.env.PICK_EXPORT_COMPONENTS)
+  : require('./exportComponents');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -117,10 +119,7 @@ const webpackConfig = {
   devtool: shouldUseSourceMap ? 'source-map' : false,
   externals: externals('root'),
   // In production, we only want to load the app code.
-  entry: {
-    index: paths.appIndexJs,
-    ...exportComponents,
-  },
+  entry: exportComponents,
   output: {
     // The build folder.
     path: paths.appBuild,
