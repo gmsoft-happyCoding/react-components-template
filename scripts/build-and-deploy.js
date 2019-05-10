@@ -14,30 +14,21 @@ function printSegment(title) {
   console.log(chalk.magenta(`---------------------------${title}---------------------------`));
 }
 
-function buildAndDeploy(whichDeploy, exportComponents) {
+function buildAndDeploy(whichDeploy) {
   // project build
   printSegment('project build');
-  child_process.execSync('yarn build', {
-    stdio: 'inherit',
-    env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
-  });
+  child_process.execSync('yarn build', { stdio: 'inherit' });
 
   // docz build
   const args = require('gar')(process.argv.slice(2));
   if (!args['no-doc']) {
     printSegment('docz build');
-    child_process.execSync('docz build', {
-      stdio: 'inherit',
-      env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
-    });
+    child_process.execSync('docz build', { stdio: 'inherit' });
   }
 
   // gen:meta
   printSegment('gen meta');
-  child_process.execSync('yarn gen:meta', {
-    stdio: 'inherit',
-    env: { PICK_EXPORT_COMPONENTS: JSON.stringify(exportComponents) },
-  });
+  child_process.execSync('yarn gen:meta', { stdio: 'inherit' });
 
   // deploy
   printSegment('deploy');
@@ -48,8 +39,10 @@ async function run() {
   process.env.NODE_ENV = 'production';
 
   const exportComponents = await genEC();
+  process.env.PICK_EXPORT_COMPONENTS = JSON.stringify(exportComponents);
+
   const whichDeploy = await loadDeployEnv();
-  buildAndDeploy(whichDeploy, exportComponents);
+  buildAndDeploy(whichDeploy);
 }
 
 run();
