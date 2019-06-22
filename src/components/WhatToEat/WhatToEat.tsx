@@ -7,7 +7,7 @@ import { stateContainer } from '@/utils';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Cover from './Cover';
-import { useActions } from '@/hooks/useActions';
+import { useActions } from '@/hooks';
 
 const { Search } = Input;
 
