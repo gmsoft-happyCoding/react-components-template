@@ -6,8 +6,8 @@ import { Button, Card, Input, Switch } from 'antd';
 import { stateContainer } from '@/utils';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useActions } from 'gm-react-hanger';
 import Cover from './Cover';
-import { useActions } from '@/hooks';
 
 const { Search } = Input;
 
