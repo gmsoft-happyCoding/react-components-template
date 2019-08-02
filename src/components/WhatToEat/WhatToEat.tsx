@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Card, Input, Switch } from 'antd';
+import { useActions } from 'gm-react-hanger';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import Cover from './Cover';
 import { Mode } from '@/enums/Mode';
 import * as whatToEatActions from '@/models/whatToEat/whatToEat.actions';
 import whatToEatMode, { WhatToEatState, WHAT_TO_EAT } from '@/models/whatToEat/whatToEat.model';
-import { Button, Card, Input, Switch } from 'antd';
 import { stateContainer } from '@/utils';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { useActions } from 'gm-react-hanger';
-import Cover from './Cover';
 
 const { Search } = Input;
 
@@ -47,10 +47,10 @@ interface Props {
 const WhatToEat = (props: Props) => {
   const { defaultMode, mode: propMode } = props;
 
-  const [mode, setMode] = useState(defaultMode as Mode);
+  const [mode, setMode] = useState(defaultMode);
 
   useEffect(() => {
-    if (propMode) setMode(propMode as Mode);
+    if (propMode) setMode(propMode);
   }, [propMode]);
 
   const switchMode = (checked: boolean) => {
@@ -66,11 +66,11 @@ const WhatToEat = (props: Props) => {
       actions={[
         mode === Mode.DRAW ? (
           // @ts-ignore
-          <Button type="primary" block onClick={draw}>
+          <Button type="primary" onClick={draw}>
             Let me see
           </Button>
         ) : (
-          <Search onSearch={search} placeholder="输入关键字 - 回车" />
+          <Search style={{ width: 'auto' }} onSearch={search} placeholder="输入关键字 - 回车" />
         ),
         <ModeSwitch>
           手动搜索:{' '}

@@ -23,9 +23,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const externals = require('./externals');
-const exportComponents = process.env.PICK_EXPORT_COMPONENTS
-  ? JSON.parse(process.env.PICK_EXPORT_COMPONENTS)
-  : require('./exportComponents');
+const exportComponents = global.PICK_EXPORT_COMPONENTS || require('./exportComponents');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.

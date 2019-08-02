@@ -9,9 +9,9 @@
 启动 components 项目开发调试, 默认端口 3030
 (需调试的组件请在 src/App.tsx 中 import)
 
-### `yarn dev-build [-p | --pick]`
+### `yarn dev-build [--pick]`
 
-* `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
+* `--pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
 
 启动 components 项目的开发构建, 构建出独立的组件 bundle, 用于在其他项目中集成调试
 
@@ -19,45 +19,46 @@
 
 启动 components 项目单元测试
 
-### `yarn run docz:dev`
+### `yarn run docz`
 
 启动 components 项目 docz 开发调试, 默认端口 3000
 
 docz 是什么? 详见: https://www.docz.site/documentation
 
-### `yarn run bad [env] [-p | --pick] [--no-doc]`
-
-* `env` - (可选参数) 指定发布环境
+### `yarn run bad [--pick] [--no-doc]`
 
 * `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
 
 * `--no-doc` - (可选参数) 不生成docz文档
 
 编译&发布(build and deploy)项目
-发布信息可以通过以下环境变量(在此目录 app/env 对应的配置文件中)配置:
+发布信息可以通过以下环境变量(在/env 对应的配置文件中)配置:
+
+编译&发布(build and deploy) app 项目
 
 ```
 REACT_APP_DEPLOY_TYPE
 有效值: zip | scp
 
-zip: 生成用于发布的打包文件
+zip: 生成用于发布的文件
 scp: 上传到发布目标服务器
 ```
 
 ```
-REACT_APP_DEPLOY_SERVERS
+REACT_APP_DEPLOY_MACHINES
 接受一组发布目标服务器信息设置包括
-1. 登录服务器需要的信息(密码等敏感信息可以不配置, 在发布时通过命令行提交)
-2. 上传目标目录
+machine 和 where 必须配置, see: https://192.168.2.10:8080/svn/GovProEleTrade/安装与配置/部署配置/发布配置
+
 示例:
 [{
-    "host": "192.168.2.11",
-    "port": 22,
-    "username": "root",
-    "privateKey":"C:/Users/xb/.ssh/id_rsa",
-    "passphrase":"",
-    "path": "/root/test"
+    "machine": "machine1",
+    "where": [{ "rootKey": "nginx.webcomponent", "path": "deploy-test"}]
 }]
+
+其他可选的配置:
+privateKey - 私钥文件path
+passphrase - 私钥密码
+password - 服务器登录密码
 
 发布服务器可以通过 privateKey + passphrase 登录
 也可以通过 password 登录
@@ -65,13 +66,9 @@ REACT_APP_DEPLOY_SERVERS
 
 > 发布信息可以不配置或者部分配置, 执行命令后未配置的信息可通过命令行交互填写
 
-### `yarn gen:api`
+### `yarn genapi`
 
 生成 `api` 代码
-
-### `yarn gen:meta`
-
-生成发布组件的 `meta` 信息 json
 
 ---
 
