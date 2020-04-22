@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import Cover from './Cover';
 import { Mode } from '@/enums/Mode';
 import * as whatToEatActions from '@/models/whatToEat/whatToEat.actions';
-import whatToEatMode, { WhatToEatState, WHAT_TO_EAT } from '@/models/whatToEat/whatToEat.model';
+import whatToEatMode, { WhatToEatState } from '@/models/whatToEat/whatToEat.model';
 import { stateContainer } from '@/utils';
+import { WHAT_TO_EAT } from '@/constant/namespace';
 
 const { Search } = Input;
 
@@ -27,17 +28,19 @@ const ModeSwitch = styled.div`
 
 interface Props {
   /**
-   * 初始模式 -
-   * 注意: 此处不能使用 Mode 只能这样写, 不然 docz 和 生成组件元数据时都不能正确的识别出类型
-   * @workflow - 此注解标识标识该prop, 需要工作流设计器配置
+   * 初始模式
+   * @workflow - 此注解标识该prop, 需要工作流设计器配置
+   * 为生成元数据提供枚举值
+   * @enumType draw | search
    * @default draw
    */
-  defaultMode: 'draw' | 'search';
+  defaultMode: Mode;
   /**
-   * 模式 -
+   * 模式
    * 组件mount后, 可通过 mode 改变组件模式
+   * @enumType draw | search
    */
-  mode?: 'draw' | 'search';
+  mode?: Mode;
 }
 
 /**
@@ -59,7 +62,7 @@ const WhatToEat = (props: Props) => {
 
   const food = useSelector((state: WhatToEatState) => state[WHAT_TO_EAT]);
 
-  const { draw, search } = useActions(whatToEatActions);
+  const { draw, searchFood } = useActions(whatToEatActions);
 
   return (
     <FoodCard
@@ -70,7 +73,11 @@ const WhatToEat = (props: Props) => {
             Let me see
           </Button>
         ) : (
-          <Search style={{ width: 'auto' }} onSearch={search} placeholder="输入关键字 - 回车" />
+          <Search
+            style={{ width: 'auto' }}
+            onSearch={searchFood.started}
+            placeholder="输入关键字 - 回车"
+          />
         ),
         <ModeSwitch>
           手动搜索:{' '}
