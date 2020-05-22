@@ -23,6 +23,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const externals = require('./externals');
+const systemModules = require('./systemModules');
 const exportComponents = global.PICK_EXPORT_COMPONENTS || require('./exportComponents');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -433,6 +434,9 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+      templateParameters: {
+        systemModules,
+      },
       minify: {
         removeComments: true,
         collapseWhitespace: true,

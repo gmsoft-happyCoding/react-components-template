@@ -5,8 +5,9 @@
     "start": "stormrage start",
     "dev-build": "stormrage devbuild",
     "test": "stormrage test",
-    "docz": "stormrage docz",
+    "doc": "stormrage doc",
     "genapi": "stormrage genapi",
+    "genmeta": "stormrage genmeta",
     "bad": "stormrage bad"
   },
   "dependencies": {
@@ -52,9 +53,6 @@
     "systemjs": "0.21.5"
   },
   "devDependencies": {
-    "stormrage": "^1.6.0"
-  },
-  "resolutions": {
-    "webpack": "4.19.1"
+    "stormrage": "^2.0.4"
   }
 }

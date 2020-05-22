@@ -18,6 +18,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const externals = require('./externals');
+const systemModules = require('./systemModules');
 const exportComponents = global.PICK_EXPORT_COMPONENTS || require('./exportComponents');
 
 const webpackHotDevClient = require.resolve('react-dev-utils/webpackHotDevClient');
@@ -329,6 +330,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+      templateParameters: {
+        systemModules,
+      },
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
