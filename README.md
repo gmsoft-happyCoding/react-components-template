@@ -11,7 +11,7 @@
 
 ### `yarn dev-build [--pick]`
 
-* `--pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
+- `--pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
 
 启动 components 项目的开发构建, 构建出独立的组件 bundle, 用于在其他项目中集成调试
 
@@ -19,17 +19,15 @@
 
 启动 components 项目单元测试
 
-### `yarn run docz`
+### `yarn run doc`
 
-启动 components 项目 docz 开发调试, 默认端口 3000
-
-docz 是什么? 详见: https://www.docz.site/documentation
+启动 components 项目 doc 开发调试, 默认端口 6060
 
 ### `yarn run bad [--pick] [--no-doc]`
 
-* `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
+- `-p | --pick` - (可选参数) (从`packages\components\config\exportComponents.js`中)手动选择需要发布的组件
 
-* `--no-doc` - (可选参数) 不生成docz文档
+- `--no-doc` - (可选参数) 不生成 doc 文档
 
 编译&发布(build and deploy)项目
 发布信息可以通过以下环境变量(在/env 对应的配置文件中)配置:
@@ -90,11 +88,11 @@ password - 服务器登录密码
 如果你想要定义自己的路径别名, 请修改一下文件
 
 ```
-1. packages/*/config/webpack.config.dev.js
-2. packages/*/config/webpack.config.prod.js
-3. packages/*/tsconfig.json
-4. packages/*/doczrc.js
-5. packages/*/jest.config.js
+1. /config/webpack.config.dev.js
+2. /config/webpack.config.prod.js
+3. /tsconfig.json
+4. /styleguide.config.js
+5. /jest.config.js
 ```
 
 ## 其他

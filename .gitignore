@@ -75,6 +75,4 @@ typings/
 *.zip
 .vscode/
 build/
-.docz/
-public/index.docz.html
 config/_exportComponents.js
