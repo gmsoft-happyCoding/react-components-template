@@ -7,6 +7,7 @@ const stateContainer = create({
   useGlobalContextPlugin: true,
   globalContextOpts: {
     djcGatewayBaseUrl: process.env.REACT_APP_DJC_GATEWAY_BASE,
+    notLoadMe: true,
   },
   onError: err => {
     // err.preventDefault();
