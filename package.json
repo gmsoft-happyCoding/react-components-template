@@ -1,4 +1,5 @@
 {
+  "name": "{{projectName}}",
   "private": true,
   "isComponents": true,
   "scripts": {

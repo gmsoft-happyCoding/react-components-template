@@ -121,6 +121,7 @@ const webpackConfig = {
   // In production, we only want to load the app code.
   entry: exportComponents,
   output: {
+    jsonpFunction: `webpackJsonp${require(paths.appPackageJson).name}`,
     // The build folder.
     path: paths.appBuild,
     // Generated JS file names (with nested folders).
@@ -514,18 +515,18 @@ const webpackConfig = {
         silent: true,
         formatter: typescriptFormatter,
       }),
-      new ESLintPlugin({
-        // Plugin options
-        extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
-        formatter: require.resolve('react-dev-utils/eslintFormatter'),
-        eslintPath: require.resolve('eslint'),
-        context: paths.appSrc,
-        cache: true,
-        cacheLocation: path.resolve(paths.appNodeModules, '.cache/.eslintcache'),
-        // ESLint class options
-        cwd: paths.appPath,
-        resolvePluginsRelativeTo: __dirname,
-      }),
+    new ESLintPlugin({
+      // Plugin options
+      extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
+      formatter: require.resolve('react-dev-utils/eslintFormatter'),
+      eslintPath: require.resolve('eslint'),
+      context: paths.appSrc,
+      cache: true,
+      cacheLocation: path.resolve(paths.appNodeModules, '.cache/.eslintcache'),
+      // ESLint class options
+      cwd: paths.appPath,
+      resolvePluginsRelativeTo: __dirname,
+    }),
   ].filter(Boolean),
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
