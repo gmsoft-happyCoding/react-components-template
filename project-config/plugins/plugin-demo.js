@@ -22,6 +22,7 @@ module.exports = async context => {
     .then(_answers => ({ ...pluginOption, ..._answers }));
 
   return produce(context, draft => {
+    // eslint-disable-next-line no-param-reassign
     draft.config.envs = {
       ...draft.config.envs,
       REACT_APP_RUN_MODE: answers.runMode,
