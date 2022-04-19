@@ -1,3 +1,4 @@
+import { Themeable } from '@gmsoft/tt-sdk';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -7,9 +8,11 @@ import { stateContainer } from './utils';
 
 const App = () => (
   <Provider store={stateContainer._store}>
-    <Router history={stateContainer._history}>
-      <WhatToEat defaultMode={Mode.DRAW} />
-    </Router>
+    <Themeable djcGatewayBaseUrl={process.env.REACT_APP_DJC_GATEWAY_BASE} colorScheme="light">
+      <Router history={stateContainer._history}>
+        <WhatToEat defaultMode={Mode.DRAW} />
+      </Router>
+    </Themeable>
   </Provider>
 );
 
