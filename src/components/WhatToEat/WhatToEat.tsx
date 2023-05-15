@@ -62,6 +62,8 @@ const WhatToEat = (props: Props) => {
 
   const { draw, searchFood } = useActions(whatToEatActions);
 
+  if (food.name === 'error') throw new Error('this is a error testing');
+
   return (
     <FoodCard
       actions={[
