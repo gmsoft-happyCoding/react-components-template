@@ -20,7 +20,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const externals = require('./externals');
-const systemModules = require('./systemModules');
+const systemScripts = require('./systemScripts');
 const exportComponents = global.PICK_EXPORT_COMPONENTS || require('./exportComponents');
 
 const DEV_BUILD = process.env.DEV_BUILD === 'true';
@@ -92,7 +92,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
-  externals: externals(DEV_BUILD ? 'root' : 'var'),
+  externals: externals(),
   entry: DEV_BUILD ? exportComponents : paths.appIndexJs,
   output: {
     // Add /* filename */ comments to generated require()s in the output.
@@ -108,7 +108,7 @@ module.exports = {
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
-    libraryTarget: DEV_BUILD ? 'umd' : 'var',
+    libraryTarget: 'umd',
   },
   optimization: {
     // Automatically split vendor and commons
@@ -315,7 +315,7 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
       templateParameters: {
-        systemModules,
+        systemScripts,
       },
     }),
     // Makes some environment variables available in index.html.
