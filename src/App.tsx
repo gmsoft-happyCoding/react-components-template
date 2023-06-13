@@ -8,7 +8,7 @@ import { stateContainer } from './utils';
 
 const App = () => (
   <Provider store={stateContainer._store}>
-    <Themeable djcGatewayBaseUrl={process.env.REACT_APP_DJC_GATEWAY_BASE} colorScheme="light">
+    <Themeable djcGatewayBaseUrl={process.env['gateway.djc']} colorScheme="light">
       <Router history={stateContainer._history}>
         <WhatToEat defaultMode={Mode.DRAW} />
       </Router>

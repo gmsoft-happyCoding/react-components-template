@@ -6,7 +6,7 @@ const stateContainer = create({
   NODE_ENV: process.env.NODE_ENV,
   useGlobalContextPlugin: true,
   globalContextOpts: {
-    djcGatewayBaseUrl: process.env.REACT_APP_DJC_GATEWAY_BASE,
+    djcGatewayBaseUrl: process.env['gateway.djc'],
     notLoadMe: true,
   },
   onError: err => {

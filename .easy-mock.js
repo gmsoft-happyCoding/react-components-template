@@ -12,7 +12,7 @@ module.exports = {
       name: 'whatToEat',
       // urlPreprocessor: url => url.replace('/demo-gateway', ''),
       // 如果baseUrl为字符串请使用 "'baseUrl'"
-      baseUrl: 'process.env.REACT_APP_API_GATEWAY_BASE',
+      baseUrl: "process.env['gateway.djc']",
     },
   ],
 };
