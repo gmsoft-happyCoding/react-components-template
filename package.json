@@ -6,6 +6,9 @@
   "scripts": {
     "start": "stormrage start",
     "dev-build": "stormrage devbuild",
+    "dev-build-next": "stormrage devbuild --next",
+    "make": "stormrage make",
+    "deploy": "stormrage deploy {{projectName}} test1 zcj",
     "test": "stormrage test",
     "doc": "stormrage doc",
     "genapi": "stormrage genapi",
