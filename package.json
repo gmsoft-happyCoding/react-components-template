@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{projectName}}-components",
   "version": "1.0.0",
   "private": true,
   "isComponents": true,
