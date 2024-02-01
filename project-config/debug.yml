@@ -9,4 +9,4 @@ business:
 gateway:
   # 网关服务器base路径
   demo: http://easy-mock.gm/mock/5c514bf9cd2f550e9dfbb515
-  djc: '/djc-gateway'
+  djc: https://www.xcjdev1.gm/djc-gateway
