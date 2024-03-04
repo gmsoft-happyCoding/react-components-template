@@ -11,7 +11,7 @@ const exportComponents = exportComponentConfig.reduce((components, component) =>
     components[component] = path.join(paths.appSrc, 'components', component);
   } else {
     /**
-     * component name 与 path 相同不同，使用 component[0] = key, component[1] = path
+     * component name 与 path 不同，使用 component[0] = key, component[1] = path
      */
     components[component[0]] = path.join(paths.appSrc, 'components', component[1]);
   }
